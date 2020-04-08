@@ -11,6 +11,18 @@ import GoogleMaps
 import GooglePlaces
 import os.log
 
+extension UIViewController {
+    var isDarkMode: Bool {
+        if #available(iOS 13.0, *) {
+            return self.traitCollection.userInterfaceStyle == .dark
+        }
+        else {
+            return false
+        }
+    }
+
+}
+
 class ApplicantMapViewController: UIViewController {
     
     //MARK: Properties
@@ -28,13 +40,15 @@ class ApplicantMapViewController: UIViewController {
     var selectedPlace: GMSPlace?
     
     var infoWindowMapClicked: InfoWindowMap?
+    
+    var makerPositionClient: GMSMarker? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        GMSServices.provideAPIKey("")
+        GMSServices.provideAPIKey("AIzaSyCD9YmHgoDq-py-561lKtxrYaefjM6RS9g")
 //        GMSPlacesClient.provideAPIKey("api key")
         
 //        // Create a GMSCameraPosition that tells the map to display the
@@ -68,6 +82,9 @@ class ApplicantMapViewController: UIViewController {
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.delegate = self
         //mapView.isMyLocationEnabled = true
+        
+        // style Google Maps
+        setMapStyle()
 
         // Add the map to the view, hide it until we've got a location update.
         view.addSubview(mapView)
@@ -146,6 +163,23 @@ class ApplicantMapViewController: UIViewController {
         }
     }
     
+    func setMapStyle() -> Void {
+        if UIViewController().isDarkMode {
+            do {
+              // Set the map style by passing the URL of the local file.
+              if let styleURL = Bundle.main.url(forResource: "styleGoogleMaps", withExtension: "json") {
+                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+              } else {
+                NSLog("Unable to find style.json")
+              }
+            } catch {
+              NSLog("One or more of the map styles failed to load. \(error)")
+            }
+        } else {
+            mapView.mapStyle = nil
+        }
+    }
+    
     
     
     //MARK: Action
@@ -154,6 +188,17 @@ class ApplicantMapViewController: UIViewController {
         if let src = sender.source as? OfferViewController {
             print("enter in map view from OfferMapViewController")
         }
+    }
+    
+    // When dark mode change
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        guard UIApplication.shared.applicationState == .inactive else {
+            return
+        }
+        
+        setMapStyle()
     }
 
 
@@ -181,13 +226,15 @@ extension ApplicantMapViewController: CLLocationManagerDelegate {
     }
     
     // Creates a marker in the center of the map.
-    let marker = GMSMarker()
-    marker.position = CLLocationCoordinate2D(
+    if makerPositionClient == nil {
+        makerPositionClient = GMSMarker()
+    }
+    makerPositionClient!.position = CLLocationCoordinate2D(
        latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
 //    marker.title = "Your current location"
 //    marker.snippet = "body"
-    marker.userData = InfoWindowMap(title: "Your current location", body: "lorem ipsum")
-    marker.map = mapView
+    makerPositionClient!.userData = InfoWindowMap(title: "Your current location", body: "lorem ipsum")
+    makerPositionClient!.map = mapView
   }
            
   // Handle authorization for the location manager.
@@ -217,6 +264,7 @@ extension ApplicantMapViewController: CLLocationManagerDelegate {
 
 //MARK: GMSMapViewDelegate
 extension ApplicantMapViewController: GMSMapViewDelegate {
+    
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         if (marker.userData != nil) && (marker.userData as! InfoWindowMap).title != "Your current location" {
             

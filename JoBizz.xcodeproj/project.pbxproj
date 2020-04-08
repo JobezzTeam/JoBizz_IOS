@@ -23,6 +23,7 @@
 		F20F4CEB23A1316C00F74379 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F4CEA23A1316C00F74379 /* Enums.swift */; };
 		F20F4CEC23A1316C00F74379 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F4CEA23A1316C00F74379 /* Enums.swift */; };
 		F20F4CED23A1316C00F74379 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F4CEA23A1316C00F74379 /* Enums.swift */; };
+		F23DA3EA23FD79AA0037E9C0 /* styleGoogleMaps.json in Resources */ = {isa = PBXBuildFile; fileRef = F23DA3E923FD79AA0037E9C0 /* styleGoogleMaps.json */; };
 		F282AE822395261E007EBCC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282AE812395261E007EBCC9 /* AppDelegate.swift */; };
 		F282AE842395261E007EBCC9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282AE832395261E007EBCC9 /* SceneDelegate.swift */; };
 		F282AE862395261E007EBCC9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282AE852395261E007EBCC9 /* LoginViewController.swift */; };
@@ -94,6 +95,7 @@
 		F20F4CE0239FC65600F74379 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F20F4CE423A1216200F74379 /* ManagerMongo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerMongo.swift; sourceTree = "<group>"; };
 		F20F4CEA23A1316C00F74379 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		F23DA3E923FD79AA0037E9C0 /* styleGoogleMaps.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = styleGoogleMaps.json; path = JoBizz/styleGoogleMaps.json; sourceTree = "<group>"; };
 		F282AE7E2395261E007EBCC9 /* JoBizz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JoBizz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F282AE812395261E007EBCC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F282AE832395261E007EBCC9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 		F282AE752395261E007EBCC9 = {
 			isa = PBXGroup;
 			children = (
+				F23DA3E923FD79AA0037E9C0 /* styleGoogleMaps.json */,
 				F282AE802395261E007EBCC9 /* JoBizz */,
 				F282AE972395261F007EBCC9 /* JoBizzTests */,
 				F282AEA22395261F007EBCC9 /* JoBizzUITests */,
@@ -399,6 +402,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F23DA3EA23FD79AA0037E9C0 /* styleGoogleMaps.json in Resources */,
 				F2902A0923A2963A00A1D58D /* EmployerSpace.storyboard in Resources */,
 				F2DC4BA9239CFE9400E2553C /* GothamRounded-Medium.otf in Resources */,
 				F2DC4BA8239CFE7E00E2553C /* GothamRounded-Bold.otf in Resources */,
