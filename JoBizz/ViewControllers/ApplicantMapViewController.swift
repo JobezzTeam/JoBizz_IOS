@@ -48,8 +48,7 @@ class ApplicantMapViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        GMSServices.provideAPIKey("AIzaSyCD9YmHgoDq-py-561lKtxrYaefjM6RS9g")
-//        GMSPlacesClient.provideAPIKey("api key")
+        GMSPlacesClient.provideAPIKey("api key")
         
 //        // Create a GMSCameraPosition that tells the map to display the
 //        // coordinate -33.86,151.20 at zoom level 6.
